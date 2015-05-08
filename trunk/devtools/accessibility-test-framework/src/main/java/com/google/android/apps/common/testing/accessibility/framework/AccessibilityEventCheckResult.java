@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 Google Inc.
+ * Copyright (C) 2015 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -20,52 +20,51 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.accessibility.AccessibilityNodeInfo;
+import android.view.accessibility.AccessibilityEvent;
 
 import com.googlecode.eyesfree.utils.LogUtils;
 
 /**
- * Result generated when an accessibility check runs on a {@code AccessibilityNodeInfo}.
+ * Result generated when an accessibility check runs on a {@link AccessibilityEvent}.
  */
-@TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
-public final class AccessibilityInfoCheckResult extends AccessibilityCheckResult implements
+@TargetApi(Build.VERSION_CODES.DONUT)
+public final class AccessibilityEventCheckResult extends AccessibilityCheckResult implements
     Parcelable {
 
-  private AccessibilityNodeInfo info;
+  private AccessibilityEvent event;
 
   /**
    * @param checkClass The check that generated the error
    * @param type The type of the result
    * @param message A human-readable message explaining the error
-   * @param info The info that was responsible for generating the error
+   * @param event The {@link AccessibilityEvent} reported as the cause of the result
    */
-  public AccessibilityInfoCheckResult(Class<? extends AccessibilityCheck> checkClass,
-      AccessibilityCheckResultType type, CharSequence message, AccessibilityNodeInfo info) {
+  public AccessibilityEventCheckResult(Class<? extends AccessibilityCheck> checkClass,
+      AccessibilityCheckResultType type, CharSequence message, AccessibilityEvent event) {
     super(checkClass, type, message);
-    if (info != null) {
-      this.info = AccessibilityNodeInfo.obtain(info);
+    if (event != null) {
+      this.event = AccessibilityEvent.obtain(event);
     }
   }
 
-  private AccessibilityInfoCheckResult(Parcel in) {
+  private AccessibilityEventCheckResult(Parcel in) {
     super(null, null, null);
     readFromParcel(in);
   }
 
   /**
-   * @return The info to which the result applies.
+   * @return The {@link AccessibilityEvent} to which the result applies
    */
-  public AccessibilityNodeInfo getInfo() {
-    return info;
+  public AccessibilityEvent getEvent() {
+    return event;
   }
 
   @Override
   public void recycle() {
     super.recycle();
-
-    if (info != null) {
-      info.recycle();
-      info = null;
+    if (event != null) {
+      event.recycle();
+      event = null;
     }
   }
 
@@ -79,10 +78,11 @@ public final class AccessibilityInfoCheckResult extends AccessibilityCheckResult
     dest.writeString((checkClass != null) ? checkClass.getName() : "");
     dest.writeInt((type != null) ? type.ordinal() : -1);
     TextUtils.writeToParcel(message, dest, flags);
-    // Info requires a presence flag
-    if (info != null) {
+
+    // Event requires a presence flag
+    if (event != null) {
       dest.writeInt(1);
-      info.writeToParcel(dest, flags);
+      event.writeToParcel(dest, flags);
     } else {
       dest.writeInt(0);
     }
@@ -112,21 +112,20 @@ public final class AccessibilityInfoCheckResult extends AccessibilityCheckResult
     // Message
     this.message = TextUtils.CHAR_SEQUENCE_CREATOR.createFromParcel(in);
 
-    // Info
-    this.info = (in.readInt() == 1) ? AccessibilityNodeInfo.CREATOR.createFromParcel(in) : null;
-
+    // Event
+    this.event = (in.readInt() == 1) ? AccessibilityEvent.CREATOR.createFromParcel(in) : null;
   }
 
-  public static final Parcelable.Creator<AccessibilityInfoCheckResult> CREATOR =
-      new Parcelable.Creator<AccessibilityInfoCheckResult>() {
+  public static final Parcelable.Creator<AccessibilityEventCheckResult> CREATOR =
+      new Parcelable.Creator<AccessibilityEventCheckResult>() {
         @Override
-        public AccessibilityInfoCheckResult createFromParcel(Parcel in) {
-          return new AccessibilityInfoCheckResult(in);
+        public AccessibilityEventCheckResult createFromParcel(Parcel in) {
+          return new AccessibilityEventCheckResult(in);
         }
 
         @Override
-        public AccessibilityInfoCheckResult[] newArray(int size) {
-          return new AccessibilityInfoCheckResult[size];
+        public AccessibilityEventCheckResult[] newArray(int size) {
+          return new AccessibilityEventCheckResult[size];
         }
       };
 }
