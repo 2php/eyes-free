@@ -1,0 +1,34 @@
+# Introduction #
+
+There's far more code than documentation, so here's an attempt to provide some general answers to some of the questions we've received. These answers are aimed at the end-users of the applications. Developer FAQs are also available on this wiki using the following link DevelopersFAQs.
+
+# Key Concepts #
+The eyes-free project includes several user-interfaces where the user uses radial stroke-based gestures. The start of each stroke is the location where they first touch the touchscreen, the user then keeps their finger in contact with the touchscreen while moving their finger in a straight line radially e.g. straight up, left, diagonally down and to the left, etc. The user then lifts their finger from the screen to complete the gesture. (These notes assume the use of a finger, however a thumb, or possibly other limbs such as a toe, should be work).
+
+There are some differences in individual applications, to suit the needs of that application.
+
+## Gestures for the 'Talking Dialer' ##
+Wherever the user touches the touchscreen represents the digit 5, which is roughly the center of a typical 'T9' phone keypad. A T9 keypad has the following layout:
+
+|1|2|3|
+|:|:|:|
+|4|5|6|
+|7|8|9|
+|`*`|0|#|
+
+The user-interface vibrates as the user touches, or crosses-over a digit on the virtual T9 keypad. Here are some examples of how to dial various digits:
+  * To dial a zero '0', start near the top and center of the touchscreen, then move the finger straight down the touchscreen, 'over' the 8 (feedback will be provided by the phone vibrating briefly) until the '0' is reached (this should be the second vibration you feel from the phone). Now lift the finger from the touchscreen. The digit will be read out by the phone (assuming the audio volume is not muted).
+
+To select either the star '`*`' you need to move in a straight line diagonally to the left for the '`*`' over the '7' and roughly the same distance again. Similarly for the hash '#' character start by moving in the direction of the '9' diagonally down and to the right, and continue until you reach the '#'.
+
+If you make a mistake, digits can be deleted by shaking the phone from side-to-side. After a short shake the most recent digit should be deleted; a longer shake of several seconds should delete the entire number.
+
+# Setup Details #
+
+## Loading the eyes-free shell automatically on Android ##
+The eyes-free-config application allows you to configure your device so the eyes-free-shell will load automatically when your phone turns on. If you don't have it installed, you can download it from the Market.
+
+The 'home' button will then go to the eyes-free shell. If you want to return to the default, graphical shell, press and hold the 'back' key for a long time (about 6 seconds should be enough).
+
+## Bootstrapping the text-to-speech applications ##
+To work, the applications need the text-to-speech library installed and the speech data. These can be downloaded from Market if they're not already installed.

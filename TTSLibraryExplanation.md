@@ -1,0 +1,32 @@
+# What is this TTS library for? #
+
+### If you just downloaded the TTS library and you're feeling confused about how to use the TTS or what it is supposed to do, the following message is addressed to you. ###
+
+
+Hello,
+
+> You asked me a question about how to use the Text-To-Speech Library (TTS). The TTS library is a component that is for use by other applications and is not an application by itself. The function of the TTS is to take a string of text and read it aloud. There are many uses for such a component; for example, a developer could use it to write an application that will read out your text messages or speak driving directions to you. But until a program uses it, it will not do anything by itself.
+
+> Why release an app that doesn't do anything by itself? Well, because it's a shared library that can be used by many different apps. Rather than have each developer try to figure out how to make a TTS for Android, here is a TTS that can be shared by all Android app developers. It does not belong to any one particular app, and having it on the Market by itself allows for end users to get the latest and greatest version of the TTS, even if the app developers don't update their apps. That's the beauty of having software libraries, and that's why there's a category for Software Libraries in the Application section of Market.
+
+> If you are interested in finding real apps that use the TTS, I would recommend that you press the "Menu" key when you open the TTS Service settings. Choose "Application Showcase" and you will be taken to a list of some of the applications that use the TTS. For example, there is an app called "bubble" that turns your Android into a bubble level - that app has an option to use the TTS in its preferences setting. There is also an app called "Speaking Pad" - it's a talking notepad application that will speak whatever you type.
+
+> Also, I would recommend visiting the TTS library's home page at http://code.google.com/p/eyes-free/ I have other apps which are in development right now that use the TTS; when I have polished them a bit more, I will release them on the Market. But if you want to get started using these apps right now, feel free to check out the source code, compile the apps, and put them on your G1.
+
+> If you would like to use the TTS in your app, please checkout the source code above and look at the example applications. The talking compass would be a good app to look at first as it's fairly simple. I'm working on better documentation and will upload that as soon as I have it written, so please check back often.
+
+> BTW, if you're wondering why the TTS needs internet connectivity, it's because when an app first tries to use it, it will download some speech data files to your SD card. The speech data files are stored on the SD card instead of being shipped with the app to minimize the amount of space that the TTS needs to take up in your phone memory. After that, assuming that you keep your SD card with the voice data in your phone, it shouldn't need to connect to the Internet.
+
+> I hope this email has clarified things for you. If you wish to learn more about some of the things that I mentioned above, I highly recommend the following links:
+
+> -Writing Android applications: http://code.google.com/android/documentation.html
+
+> -The TTS library for Android: http://code.google.com/p/eyes-free/
+
+> -Writing Android apps that use the TTS library: http://eyes-free.googlecode.com/svn/trunk/documentation/tutorial/tutorial.html
+
+> -Software libraries: http://en.wikipedia.org/wiki/Library_(computing)
+
+> -Speech synthesis technology: http://en.wikipedia.org/wiki/Speech_synthesis
+
+-Charles
